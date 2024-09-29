@@ -13,9 +13,9 @@ Blob 這種資料型態的出現最早是應用於資料庫管理中，用來儲
 ### 2. tree 物件
 
 ### 3. commit
-### 4. tree
-### branch
-### head
+### 4. tag
+## branch
+## head
 ## .git 檔案夾觀察
 ## About Commit Message
 
