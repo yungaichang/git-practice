@@ -17,19 +17,19 @@ tree 物件在 Git 中用來儲存目錄以及檔案資訊，當中會記錄以�
 * 對應的 blob 物件名稱
 * 檔案連結 (symbolic link)
 * 檔案權限
-* 其他的 tree 物件
-透過 tree 物件，我們可以為特定的版本保存一份反了當下更動的快照 (snapshot)，其內包含了當次所要提交的所有更動。透過下圖可以理解 tree 物件與 blob 物件的關聯性：
+* 其他的 tree 物件  
+透過 tree 物件，我們可以為特定的版本保存一份反了當下更動的快照 (snapshot)，其內包含了當次所要提交的所有更動。透過下圖可以理解 tree 物件與 blob 物件的關聯性：  
 ![](https://ithelp.ithome.com.tw/upload/images/20211001/20141010hE96j1i606.png "圖片來源：https://ithelp.ithome.com.tw/articles/10275828")
 ### 3. commit 物件
 commit 物件在 Git 中記錄每次 commit 的資訊，這些資訊包含以下：
 * 當次更動的人員、時間、備註訊息 (commit message)
 * 特定提交版本所包含的 tree 物件
-* 上一層的 commit 物件名稱 (第一次 commit 時不會有此項目)
-透過下圖可以理解 commit 物件、tree 物件與 blob 物件的關係：
-![](https://ithelp.ithome.com.tw/upload/images/20211001/20141010ItUnDWpDWy.png "圖片來源：https://ithelp.ithome.com.tw/articles/10276087")
-需要特別注意的是， commit 物件只會指向 tree 物件，而 tree 物件又會指向一個或多個 blob 物件，也能指向其他的 tree 物件。
-當再次提交 commit 時，關係會出現下圖的變化：
-![](https://ithelp.ithome.com.tw/upload/images/20211001/201410107UhogoDZPE.png "圖片來源：https://ithelp.ithome.com.tw/articles/10276087")
+* 上一層的 commit 物件名稱 (第一次 commit 時不會有此項目)  
+透過下圖可以理解 commit 物件、tree 物件與 blob 物件的關係：  
+![](https://ithelp.ithome.com.tw/upload/images/20211001/20141010ItUnDWpDWy.png "圖片來源：https://ithelp.ithome.com.tw/articles/10276087")  
+需要特別注意的是， commit 物件只會指向 tree 物件，而 tree 物件又會指向一個或多個 blob 物件，也能指向其他的 tree 物件。  
+當再次提交 commit 時，關係會出現下圖的變化：  
+![](https://ithelp.ithome.com.tw/upload/images/20211001/201410107UhogoDZPE.png "圖片來源：https://ithelp.ithome.com.tw/articles/10276087")  
 可以注意到新的 commit 會指向前一個 commit。
 ### 4. tag 物件
 tag 物件通常用來為某個特定版本的 commit 物件標示一個更容易理解的名稱，例如`v.1.0.1`、`v.1.0.2`。除了指向 commit 物件，tag 物件也可以用來指向 blob 物件、tree 物件，以及其他 tag 物件。而 tag 物件又可以分成兩種類型：
@@ -42,7 +42,7 @@ tag 物件通常用來為某個特定版本的 commit 物件標示一個更容�
     * 內容包含以下：
         (1) 建立標籤者 (tagger) 的名字、電子郵件和建立日期
         (2) 標籤訊息 (tagging message)
-        (3) 指標 (指向某 Git 物件)
+        (3) 指標 (指向某 Git 物件)  
 可以再次透過圖片理解 git 中不同物件之間的關聯：
 ![](https://raw.githubusercontent.com/yungaichang/origin/2f8a4e50b36b33afcefcd4fe446212e3ca981880/images/git%20tag.png "改編自https://ithelp.ithome.com.tw/articles/10276087")
 ## branch
