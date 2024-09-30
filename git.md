@@ -28,7 +28,7 @@ tree 物件在 Git 中用來儲存目錄以及檔案資訊，當中會記錄以�
 * 檔案權限
 * 其他的 tree 物件  
   
-透過 tree 物件，我們可以為特定的版本保存一份反了當下更動的快照 (snapshot)，其內包含了當次所要提交的所有更動。透過下圖可以理解 tree 物件與 blob 物件的關聯性：  
+透過 tree 物件，我們可以為特定的版本保存一份反了當下更動的 _**快照 (snapshot)**_，其內包含了當次所要提交的所有更動。透過下圖可以理解 tree 物件與 blob 物件的關聯性：  
   
 ![](https://ithelp.ithome.com.tw/upload/images/20211001/20141010hE96j1i606.png "圖片來源：https://ithelp.ithome.com.tw/articles/10275828")
 ### 3. commit 物件
@@ -39,13 +39,13 @@ commit 物件在 Git 中記錄每次 commit 的資訊，這些資訊包含以下
   
 透過下圖可以理解 commit 物件、tree 物件與 blob 物件的關係：  
   
-![](https://ithelp.ithome.com.tw/upload/images/20211001/20141010ItUnDWpDWy.png "圖片來源：https://ithelp.ithome.com.tw/articles/10276087")  
+![](https://git-scm.com/book/zh-tw/v2/images/commit-and-tree.png "圖片來源：https://git-scm.com/book/zh-tw/v2/%E4%BD%BF%E7%94%A8-Git-%E5%88%86%E6%94%AF-%E7%B0%A1%E8%BF%B0%E5%88%86%E6%94%AF")  
   
 需要特別注意的是， commit 物件只會指向 tree 物件，而 tree 物件又會指向一個或多個 blob 物件，也能指向其他的 tree 物件。  
   
 當再次提交 commit 時，關係會出現下圖的變化：  
   
-![](https://ithelp.ithome.com.tw/upload/images/20211001/201410107UhogoDZPE.png "圖片來源：https://ithelp.ithome.com.tw/articles/10276087")  
+![](https://git-scm.com/book/zh-tw/v2/images/commits-and-parents.png "圖片來源：https://git-scm.com/book/zh-tw/v2/%E4%BD%BF%E7%94%A8-Git-%E5%88%86%E6%94%AF-%E7%B0%A1%E8%BF%B0%E5%88%86%E6%94%AF")  
   
 可以注意到新的 commit 會指向前一個 commit。
 ### 4. tag 物件
@@ -64,9 +64,40 @@ tag 物件通常用來為某個特定版本的 commit 物件標示一個更容�
           
 可以再次透過圖片理解 git 中不同物件之間的關聯：
   
-![](https://raw.githubusercontent.com/yungaichang/origin/2f8a4e50b36b33afcefcd4fe446212e3ca981880/images/git%20tag.png "改編自https://ithelp.ithome.com.tw/articles/10276087")
+![](https://raw.githubusercontent.com/yungaichang/origin/2f8a4e50b36b33afcefcd4fe446212e3ca981880/images/git%20tag.png "改編自：https://ithelp.ithome.com.tw/articles/10276087")
 ## branch
+branch (分支) 是 Git 中的重要機制，其目的是用來管理實務開發上的不同版本，例如：修改 BUG 版本、測試版本、線穩定版本等。使用 branch 的好處是每一個 branch 彼此都是獨立執行的，可以在各個 branch 上開發與測試不同功能而不會互相影響，待其完成後再將兩個分支 merge (合併)。
+
+branch 是一個指向某特定 commit 物件的可移動輕量級指標，Git 將 branch 的名稱預設為 `master`，而隨著一次次更動後的 commit，`master` 會不斷自動指向最新的一個 commit 物件（如下圖）。
+
+![](https://git-scm.com/book/zh-tw/v2/images/branch-and-history.png "圖片來源：https://git-scm.com/book/zh-tw/v2/%E4%BD%BF%E7%94%A8-Git-%E5%88%86%E6%94%AF-%E7%B0%A1%E8%BF%B0%E5%88%86%E6%94%AF")
+
+當建立一個新的 branch 時，代表建立了一個新的、可移動的指標，例如建立一個叫做 testing 的 branch，會在目前的 commit 物件上新建一個指標（如下圖）。
+![](https://git-scm.com/book/zh-tw/v2/images/two-branches.png "圖片來源：https://git-scm.com/book/zh-tw/v2/%E4%BD%BF%E7%94%A8-Git-%E5%88%86%E6%94%AF-%E7%B0%A1%E8%BF%B0%E5%88%86%E6%94%AF")
+
+不過當有多個 branch 時，Git 是怎麼知道我們在哪一支 barnch 上工作呢？這就跟接下來要介紹的 head 息息相關啦！
 ## head
+`HEAD` 是 Git 中的一個特別指標，它會指向我們當前正在工作的本地 branch，因此通常 HEAD 也可以被看作是 **目前所在分支**，即為當前 branch 的別名。
+
+延續上一張圖片中的例子，當我們建立 testing 這個 branch 時，因為僅「建立」而尚未「切換」，所以此時 HEAD 仍會指向初始的 master branch（如下圖）。
+
+![](https://git-scm.com/book/zh-tw/v2/images/head-to-master.png "圖片來源：https://git-scm.com/book/zh-tw/v2/%E4%BD%BF%E7%94%A8-Git-%E5%88%86%E6%94%AF-%E7%B0%A1%E8%BF%B0%E5%88%86%E6%94%AF")
+
+當我們執行「切換」到 testing 的動作時，HEAD 就會轉為指向 testing branch（如下圖），代表我們當前的工作環境是在 testing 這支 branch 中。
+
+![](https://git-scm.com/book/zh-tw/v2/images/head-to-testing.png "圖片來源：https://git-scm.com/book/zh-tw/v2/%E4%BD%BF%E7%94%A8-Git-%E5%88%86%E6%94%AF-%E7%B0%A1%E8%BF%B0%E5%88%86%E6%94%AF")
+
+此時，若我們執行一次 commit，會發現被 HEAD 指向的 testing branch 會往前移動，反觀 master 這支 branch 則會停留在當初「切換」時的 commit 物件上（如下圖）。
+
+![](https://git-scm.com/book/zh-tw/v2/images/advance-testing.png "圖片來源：https://git-scm.com/book/zh-tw/v2/%E4%BD%BF%E7%94%A8-Git-%E5%88%86%E6%94%AF-%E7%B0%A1%E8%BF%B0%E5%88%86%E6%94%AF")
+
+若我們想要針對 master 這支 branch 的內容做更動，可以再「切換」回 master（如下圖）。
+
+![](https://git-scm.com/book/zh-tw/v2/images/checkout-master.png "圖片來源：https://git-scm.com/book/zh-tw/v2/%E4%BD%BF%E7%94%A8-Git-%E5%88%86%E6%94%AF-%E7%B0%A1%E8%BF%B0%E5%88%86%E6%94%AF")
+
+這個時候我們若做出一些更動並且 commit，便會發現專案出現兩個走向，master 與 testing 中往不同方向前進，兩邊的更動會被隔離在不同的 branch 中，而不會互相影響（如下圖）。接下來便可以在不同的 branch 中反覆切換，並在適當的時點將它們合併在一起。
+
+![](https://git-scm.com/book/zh-tw/v2/images/advance-master.png "圖片來源：https://git-scm.com/book/zh-tw/v2/%E4%BD%BF%E7%94%A8-Git-%E5%88%86%E6%94%AF-%E7%B0%A1%E8%BF%B0%E5%88%86%E6%94%AF")
 ## .git 檔案夾觀察
 ## About Commit Message
 
