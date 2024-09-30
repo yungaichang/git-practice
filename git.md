@@ -1,14 +1,14 @@
 # Git 的基本概念
 Git 是一套免費開源的分散式版本控制系統（Version Control Stystem），當中會清楚記錄每個檔案的擁有者、時間與修改異動。除了紀錄檔案的狀態變化，也可以隨時切換到某個特定版本的狀態，以追蹤文件變更的過程，對無論是個人或團隊而言都是專案開發時重要的管理版本工具。
-- [認識物件 (Object)](#-認識物件-(object-))
-  * [1. blob 物件](#-1.-blob-物件)
-  * [2. tree 物件](#-2.-tree-物件)
-  * [3. commit 物件](#-3.-commit-物件)
-  * [4. tag 物件](#-4.-tag-物件)
+- [認識物件 (Object)](#認識物件-object)
+  * [1. blob 物件](#1-blob-物件)
+  * [2. tree 物件](#2-tree-物件)
+  * [3. commit 物件](#3-commit-物件)
+  * [4. tag 物件](#4-tag-物件)
 - [branch](#branch)
 - [head](#head)
-- [.git 檔案夾觀察](#-.git-檔案夾觀察)
-- [About Commit Message](#-About-Commit-Message)
+- [.git 檔案夾觀察](#git-檔案夾觀察)
+- [About Commit Message](#about-commit-message)
 ## 認識物件 (Object)
 「物件」是 Git 中一個重要的資料結構，其用途為保存版本庫中的所有檔案與版本紀錄。而「物件」事實上是一個特別的檔案，其產生的過程是利用一個檔案的內容產生一組 SHA1 雜湊值，接著依照這個 SHA1 雜湊值來命名該檔案。
 
