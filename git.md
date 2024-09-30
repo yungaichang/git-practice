@@ -111,3 +111,6 @@ branch 是一個指向某特定 commit 物件的可移動輕量級指標，Git �
 7. [Day17｜【Git】存在 .git 目錄裡的東西 - Blob 物件與 Tree 物件（上）](https://ithelp.ithome.com.tw/articles/10275828)
 8. [Day18｜【Git】存在 .git 目錄裡的東西 - Commit 與 Tag（下）](https://ithelp.ithome.com.tw/articles/10276087)
 9. [深入 Git：Git 物件儲存 - tag 物件](https://titangene.github.io/article/git-tag-object.html)
+10. [3.1 使用 Git 分支 - 簡述分支](https://git-scm.com/book/zh-tw/v2/%e4%bd%bf%e7%94%a8-Git-%e5%88%86%e6%94%af-%e7%b0%a1%e8%bf%b0%e5%88%86%e6%94%af#rdivergent_history)
+11. [分支建立(git branch)](https://w3c.hexschool.com/git/a8ee6eee)
+12. [Day16｜什麼是 HEAD ?](https://ithelp.ithome.com.tw/articles/10275130)
