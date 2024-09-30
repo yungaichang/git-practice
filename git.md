@@ -1,15 +1,13 @@
-- [Git 的基本概念](#git------)
-- [認識物件 (Object)](#------object-)
-  * [1. blob 物件](#1-blob---)
-  * [2. tree 物件](#2-tree---)
-  * [3. commit 物件](#3-commit---)
-  * [4. tag 物件](#4-tag---)
-- [branch](#branch)
-- [head](#head)
-- [.git 檔案夾觀察](#git------)
-- [About Commit Message](#about-commit-message)
-
-<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+[Git 的基本概念](#git------)
+[認識物件 (Object)](#------object-)
+    [1. blob 物件](#1-blob---)
+    [2. tree 物件](#2-tree---)
+    [3. commit 物件](#3-commit---)
+    [4. tag 物件](#4-tag---)
+[branch](#branch)
+[head](#head)
+[.git 檔案夾觀察](#git------)
+[About Commit Message](#about-commit-message)
 
 ## Git 的基本概念
 Git 是一套免費開源的分散式版本控制系統（Version Control Stystem），當中會清楚記錄每個檔案的擁有者、時間與修改異動。除了紀錄檔案的狀態變化，也可以隨時切換到某個特定版本的狀態，以追蹤文件變更的過程，對無論是個人或團隊而言都是專案開發時重要的管理版本工具。
