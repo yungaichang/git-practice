@@ -15,7 +15,7 @@
 ### 1. 反向代理 (Reverse Proxy)：  
 特點為可以僅透過 Nginx 反向代理就向 Application Server 發送 Request，Client 無須知道 Application Server 的真實位置，Application Server 亦無需知道 Request 是哪一個 Client 所發送的，僅須回傳 Response (如下圖)。  
   
-![](images\load_balance.png "圖片來源：https://www.explainthis.io/zh-hant/swe/why-nginx")  
+![](https://github.com/yungaichang/git-practice/blob/main/week-04/images/load_balance.png "圖片來源：https://www.explainthis.io/zh-hant/swe/why-nginx")  
 ### 2. Http Cache：  
 Nginx 利用 http 快取的機制來提高 Server 的效能，其流程如下：  
     1. 當 Client 發送 Request 時，Nginx 會基於該請求的資訊生成一組 **雜湊鍵 (Hash Key)**。  
@@ -27,11 +27,11 @@ Nginx 利用 http 快取的機制來提高 Server 的效能，其流程如下：
         (步驟 3 → 5)
     3. 最後，Nginx 將取得的檔案回傳給 Client，完成這次請求的 Response。  
     (步驟 6)  
-![](images\http_cache.png "圖片來源：https://www.explainthis.io/zh-hant/swe/why-nginx")
+![](https://github.com/yungaichang/git-practice/blob/main/week-04/images/http_cache.png "圖片來源：https://www.explainthis.io/zh-hant/swe/why-nginx")
 ### 3. 負載平衡器 (Load Balance)：  
 當遇到流量大的狀況時，需要同時開多個 Application Server 才能應付，然而 Nginx 有個特點是能夠自動將 Client 的 Request 分送給不同的 Application Server，其中分送的演算法較為常見的包含 Round Robin、Least Connections 、Least Time 、IP Hash 等，使用者可以自行設計。  
   
-![](images\reverse_proxy.png "圖片來源：https://www.explainthis.io/zh-hant/swe/why-nginx")  
+![](https://github.com/yungaichang/git-practice/blob/main/week-04/images/reverse_proxy.png "圖片來源：https://www.explainthis.io/zh-hant/swe/why-nginx")  
   
 與較為傳統的 web server Apache 相比，Nginx 有以下特性：
 1. 高效能  
@@ -62,11 +62,11 @@ PM2 有以下幾個典型的使用場景：
 ## 5. 步驟 9 中提到的 `proxy` 是什麼意思？為什麼要透過 Nginx 來 `proxy` 到 Express 開發的 Web Server?
 `Proxy（代理）`是一種在 Client 與 Server 之間充當中介的服務，負責轉發 request 和 response。Proxy 依方向和用途可以分為以下兩種：
 1. Forward Proxy（轉向代理）：  
-![](images\forward_proxy.png "圖片來源：https://www.jyt0532.com/2019/11/18/proxy-reverse-proxy/")  
+![](https://github.com/yungaichang/git-practice/blob/main/week-04/images/forward_proxy.png "圖片來源：https://www.jyt0532.com/2019/11/18/proxy-reverse-proxy/")  
   
 Forward Proxy 位於使用者裝置和公共網際網路之間，Client 透過 Proxy Server 訪問其他外部資源，即所有的網頁瀏覽流量都會通過Proxy Server router，而該 Proxy Server 會檢查這些網頁瀏覽並且套用特定的安全使用政策。使用的時點為當用戶想隱藏自己的真實 IP，或者希望突破網路限制。舉例而言，連接到 VPN（Forward Proxy）以訪問互聯網資源、用戶在辦公室內網中，透過 Proxy Server 訪問 Google 或其他被防火牆封鎖的網站等。
 2. Reverse Proxy（反向代理）：  
-![](images\reverse_proxy_1.png "圖片來源：https://www.jyt0532.com/2019/11/18/proxy-reverse-proxy/")  
+![](https://github.com/yungaichang/git-practice/blob/main/week-04/images/reverse_proxy_1.png "圖片來源：https://www.jyt0532.com/2019/11/18/proxy-reverse-proxy/")  
   
 Reverse Proxy 位於一個或多個 Web Server 前方的 Server，用於攔截來自 Client 的 request。當 Client 向網站的原始 Server 傳送 request 時，這些 request 會在網路邊緣被 Reverse Proxy Server 攔截，再由 Reverse Proxy Server 轉發 request 到原始 Server （像是作業中的 Express Web Server）。接著，Reverse Proxy Server 會將原始 Server 的 response 轉發回給 Client。Reverse Proxy 的應用時機為用於需要負載平衡、安全性增強、隱藏原始 Server 的 IP，或集中管理多個後端應用。Nginx 代理請求到內部運行的 Express Server，讓外部用戶訪問 Web 服務即是一個例子。
 
