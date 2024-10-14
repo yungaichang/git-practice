@@ -27,6 +27,7 @@ Nginx 利用 http 快取的機制來提高 Server 的效能，其流程如下：
     (步驟 3 → 5)  
 3. 最後，Nginx 將取得的檔案回傳給 Client，完成這次請求的 Response。  
 (步驟 6)  
+
 ![](https://github.com/yungaichang/git-practice/blob/main/week-04/images/http_cache.png "圖片來源：https://www.explainthis.io/zh-hant/swe/why-nginx")
 ### 3. 負載平衡器 (Load Balance)：  
 當遇到流量大的狀況時，需要同時開多個 Application Server 才能應付，然而 Nginx 有個特點是能夠自動將 Client 的 Request 分送給不同的 Application Server，其中分送的演算法較為常見的包含 Round Robin、Least Connections 、Least Time 、IP Hash 等，使用者可以自行設計。  
