@@ -1,5 +1,5 @@
 ## 1. instance 的 public IP
-[My instance's public IP](http://54.242.70.220/)：http://54.242.70.220/
+My instance's public IP：http://54.242.70.220/
 ## 2. 什麼是 instance type?
 `Instance type` 是雲端環境中可以決定在執行 instance 時使用的主機電腦 (host computer) 的硬體，不同的 instance type 係由不同的 CPU、記憶體 (memory) 、儲存體 (storage) 與聯網 (networking) 容量組合而成，讓使用者得以根據其應用或軟體上的需求，彈性選擇最合適的資源組合。AWS EC2 的 instance type 針對不同的需求，可以細分為以下六種類型：  
 |                           |        適用情況        |         用途         |         例子         |
