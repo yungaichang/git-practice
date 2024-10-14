@@ -18,15 +18,15 @@
 ![](https://github.com/yungaichang/git-practice/blob/main/week-04/images/load_balance.png "圖片來源：https://www.explainthis.io/zh-hant/swe/why-nginx")  
 ### 2. Http Cache：  
 Nginx 利用 http 快取的機制來提高 Server 的效能，其流程如下：  
-    1. 當 Client 發送 Request 時，Nginx 會基於該請求的資訊生成一組 **雜湊鍵 (Hash Key)**。  
-    (步驟 1 → 2)  
-    2. Nginx 接著檢查這個 **Hash Key** 是否已存在於記憶體中：  
-        * **若雜湊鍵不存在**：Nginx 會向 **Application Server** 請求檔案的路徑，然後再從檔案系統中取得對應的檔案。 
-        (步驟 3 → 4 → 5)  
-        * **若雜湊鍵存在**：Nginx 會直接從檔案系統中擷取該檔案，無需再次向上游 Server 請求。  
-        (步驟 3 → 5)  
-    3. 最後，Nginx 將取得的檔案回傳給 Client，完成這次請求的 Response。  
-    (步驟 6)  
+1. 當 Client 發送 Request 時，Nginx 會基於該請求的資訊生成一組 **雜湊鍵 (Hash Key)**。  
+(步驟 1 → 2)  
+2. Nginx 接著檢查這個 **Hash Key** 是否已存在於記憶體中：  
+    * **若雜湊鍵不存在**：Nginx 會向 **Application Server** 請求檔案的路徑，然後再從檔案系統中取得對應的檔案。 
+    (步驟 3 → 4 → 5)  
+    * **若雜湊鍵存在**：Nginx 會直接從檔案系統中擷取該檔案，無需再次向上游 Server 請求。  
+    (步驟 3 → 5)  
+3. 最後，Nginx 將取得的檔案回傳給 Client，完成這次請求的 Response。  
+(步驟 6)  
 ![](https://github.com/yungaichang/git-practice/blob/main/week-04/images/http_cache.png "圖片來源：https://www.explainthis.io/zh-hant/swe/why-nginx")
 ### 3. 負載平衡器 (Load Balance)：  
 當遇到流量大的狀況時，需要同時開多個 Application Server 才能應付，然而 Nginx 有個特點是能夠自動將 Client 的 Request 分送給不同的 Application Server，其中分送的演算法較為常見的包含 Round Robin、Least Connections 、Least Time 、IP Hash 等，使用者可以自行設計。  
