@@ -19,12 +19,12 @@
 ### 2. Http Cache：  
 Nginx 利用 http 快取的機制來提高 Server 的效能，其流程如下：  
     1. 當 Client 發送 Request 時，Nginx 會基於該請求的資訊生成一組 **雜湊鍵 (Hash Key)**。  
-    (步驟 1 → 2)
+    (步驟 1 → 2)  
     2. Nginx 接著檢查這個 **Hash Key** 是否已存在於記憶體中：  
         * **若雜湊鍵不存在**：Nginx 會向 **Application Server** 請求檔案的路徑，然後再從檔案系統中取得對應的檔案。 
         (步驟 3 → 4 → 5)  
         * **若雜湊鍵存在**：Nginx 會直接從檔案系統中擷取該檔案，無需再次向上游 Server 請求。  
-        (步驟 3 → 5)
+        (步驟 3 → 5)  
     3. 最後，Nginx 將取得的檔案回傳給 Client，完成這次請求的 Response。  
     (步驟 6)  
 ![](https://github.com/yungaichang/git-practice/blob/main/week-04/images/http_cache.png "圖片來源：https://www.explainthis.io/zh-hant/swe/why-nginx")
@@ -35,13 +35,13 @@ Nginx 利用 http 快取的機制來提高 Server 的效能，其流程如下：
   
 與較為傳統的 web server Apache 相比，Nginx 有以下特性：
 1. 高效能  
-事件驅動架構使 Nginx 特別擅長處理大量同時連線，尤其在傳輸靜態資源時表現出色；而在面對高流量的情況下，Nginx 的效能遠優於使用進程或線程模型的 Apache
+事件驅動架構使 Nginx 特別擅長處理大量同時連線，尤其在傳輸靜態資源時表現出色；而在面對高流量的情況下，Nginx 的效能遠優於使用進程或線程模型的 Apache。  
 2. 配置與管理的靈活性佳  
-雖然 Nginx 的模組必須在編譯階段加入，無法像 Apache 一樣動態載入，但它的配置文件被認為簡單且直觀，易於管理；相較之下，Apache 的 .htaccess 讓用戶可以針對每個目錄進行靈活配置，但每次請求都需要檢查 .htaccess，可能影響效能。
+雖然 Nginx 的模組必須在編譯階段加入，無法像 Apache 一樣動態載入，但它的配置文件被認為簡單且直觀，易於管理；相較之下，Apache 的 .htaccess 讓用戶可以針對每個目錄進行靈活配置，但每次請求都需要檢查 .htaccess，可能影響效能。  
 3. 記憶體消耗低  
-Nginx 占用的資源與內存少，在高併發的情況下仍能保持低記憶體使用量和高效能，使得 Nginx 在處理大量連線時反應迅速，且有效降低 Server 成本。
+Nginx 占用的資源與內存少，在高併發的情況下仍能保持低記憶體使用量和高效能，使得 Nginx 在處理大量連線時反應迅速，且有效降低 Server 成本。  
 4. 反向代理與負載平衡
-Nginx 的反向代理和負載平衡功能能以更低的資源消耗應對大量請求，相較於 Apache，能在相同硬體資源下處理更多的流量。
+Nginx 的反向代理和負載平衡功能能以更低的資源消耗應對大量請求，相較於 Apache，能在相同硬體資源下處理更多的流量。  
 ## 4. pm2 套件是什麼？有什麼用處？
 PM2 是一個專門為 Node.js 應用所設計的 **進程管理工具 (Process Manager)**，廣泛用於 Production 環境。它的主要目的是簡化應用程序的管理，幫助開發者更輕鬆地運行和監控 Node.js 應用程序。PM2 可以看作是 Node.js 的 app server，類似於 Uvicorn/Gunicorn 在 Python 中所扮演的角色，負責應用程序的監控、負載管理、以及自動重啟等運行維護工作。  
 
@@ -72,18 +72,18 @@ Reverse Proxy 位於一個或多個 Web Server 前方的 Server，用於攔截�
 
 透過 Nginx 來 Proxy 到 Express 開發的 Web Server 的原因有以下幾點：
 * 提高安全性：  
-Express 是一個輕量且高效的 Node.js 框架，適合快速開發應用；而 Nginx 作為成熟且高效的 Web Server，可以在前端攔截潛在的惡意請求，提升整體系統的安全性。除此之外，Nginx 可以隱藏內部的 Express Server，避免其直接暴露於網路，從而降低被攻擊的風險。
+Express 是一個輕量且高效的 Node.js 框架，適合快速開發應用；而 Nginx 作為成熟且高效的 Web Server，可以在前端攔截潛在的惡意請求，提升整體系統的安全性。除此之外，Nginx 可以隱藏內部的 Express Server，避免其直接暴露於網路，從而降低被攻擊的風險。  
 * 支援負載平衡與可擴展性：  
-Nginx 支援將流量分配至多個後端 Server，實現負載平衡。當應用程式需要垂直擴展時，Nginx 可以有效地將請求均衡分發到多個 Express instance 上，提升應用的可擴展性和穩定性。
+Nginx 支援將流量分配至多個後端 Server，實現負載平衡。當應用程式需要垂直擴展時，Nginx 可以有效地將請求均衡分發到多個 Express instance 上，提升應用的可擴展性和穩定性。  
 * 支援 HTTPS：  
-Nginx 可以處理前端的 HTTPS 請求，並將其轉發為 HTTP 請求給內部的 Express Server 。如此一來，便可以避免在 Express Server 上單獨管理 SSL 憑證的複雜性，並提高了網路傳輸的安全性。
+Nginx 可以處理前端的 HTTPS 請求，並將其轉發為 HTTP 請求給內部的 Express Server 。如此一來，便可以避免在 Express Server 上單獨管理 SSL 憑證的複雜性，並提高了網路傳輸的安全性。  
 * 管理多個應用程式的集中入口：  
 透過 Nginx，使用者可以根據不同的 URL 路徑或子域名，訪問不同的後端應用。例如：  
     * `/app1` 路徑指向一個 Express Server 
     * `/app2` 路徑指向一個 Flask Server 
-這樣的設計使多個應用可以共用同一個公共 IP 和域名，簡化了管理和維護工作。
+這樣的設計使多個應用可以共用同一個公共 IP 和域名，簡化了管理和維護工作。  
 * 提高靜態資源的傳輸效率：  
-Nginx 對於靜態資源（如 HTML、CSS、JS 文件）的傳輸進行了優化，可以快速回應靜態內容請求。而 Express 專注於處理動態請求，透過 Nginx 分擔靜態資源的負載，可以顯著提升系統的整體性能。
+Nginx 對於靜態資源（如 HTML、CSS、JS 文件）的傳輸進行了優化，可以快速回應靜態內容請求。而 Express 專注於處理動態請求，透過 Nginx 分擔靜態資源的負載，可以顯著提升系統的整體性能。  
 ## 6. 步驟 9 的 Nginx 設定檔
 ```
 server {
@@ -271,6 +271,7 @@ server {
 --> 後來發現底下有 default 的內容，只要把原本的 location / 註解掉，便可以順利完成設定。
 
 (以上問題都是問同學後解惑的，非常感謝這位同學的幫助！)
+
 ---
 
 參考資料：
