@@ -1,7 +1,7 @@
 ## 1. 我的網址
-10/18 當天申請 Github Education 通過後，截至 10/21 尚未收到啟用通知。查詢 Github 相關文件有提到一般 3 天內會收到啟用通知，若在較為繁忙的時期可能會超過 3 天；當超過 5 天仍未收到可以寄信詢問。因此，我尚未具備購買免費網域的資格，目前我打算再等待一兩天，若沒有收到啟用通知會寄信去詢問，並且會在獲得啟用資格後立即補上這部分的內容。
+My website: https://www.yungaide.me/
 ## 2. 購買網域的平台
-預計會在 namecheap 上購買網域
+在 namecheap 上使用 github education 的優惠取得一年免費的網域
 ## 3. DNS 的 A record 是什麼？
 A record 中的 "A" 代表 「位址（Adrress）」，其用途主要是儲存網域的 IPv4 位址，是最基礎的 DNS record 類型。而若網站有 IPv6 位址，則會改為使用 AAAA record。
 
